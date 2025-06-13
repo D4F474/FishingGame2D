@@ -3,6 +3,7 @@ package org.example.entity.NPCTypes;
 public abstract class NPCManager {
     private String Name;
     private int x, y;
+    protected boolean interacted = false;
 
     public NPCManager(String name, int x, int y) {
         Name = name;
@@ -22,5 +23,13 @@ public abstract class NPCManager {
 
     public int getY() {
         return y;
+    }
+
+    public boolean isInteracted() {
+        return interacted;
+    }
+
+    public void changeInteractBool(){
+        this.interacted = !this.interacted;
     }
 }

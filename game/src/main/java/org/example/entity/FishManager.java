@@ -1,5 +1,7 @@
 package org.example.entity;
 
+import com.badlogic.gdx.graphics.Texture;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ public class FishManager {
     private List<Fish> fishesh;
     File fileRead;
     public FishManager(){
+        r = new Random();
         fishesh = new ArrayList<>();
         loadData();
     }
@@ -35,7 +38,7 @@ public class FishManager {
                     }
                 }
                 float price = Float.parseFloat(priceStr.toString());
-                fishesh.add(new Fish(fishName.toString(), price));
+                fishesh.add(new Fish(fishName.toString(), price, new Texture("assets/"+fishName.toString()+".png")));
             }
         }catch (IOException e){
 

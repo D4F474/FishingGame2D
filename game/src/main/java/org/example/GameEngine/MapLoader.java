@@ -14,20 +14,13 @@ public class MapLoader {
     private List<List<Character>> visualMap;
     private List<List<Character>> movementMap;
     private int oldX, oldY;
-    private FishManager fishManager;
-    private char position = ' ';
-    private boolean stepOnObject = false;
-    private Buyer buyer;
-    private Seller seller;
-    private Fisher fisher;
+    private char objectOn;
 
-    public MapLoader(List<List<Character>> visualMap,List<List<Character>> movement) {
+
+    public MapLoader(List<List<Character>> visualMap,
+                     List<List<Character>> movement) {
         this.visualMap = visualMap;
         this.movementMap = movement;
-        this.fishManager = new FishManager();
-        this.buyer = new Buyer();
-        this.seller = new Seller();
-        this.fisher = new Fisher();
     }
 
     public void DrawMap(Textures textures,SpriteBatch batch){
@@ -74,16 +67,14 @@ public class MapLoader {
         if(movementMap.get(y).get(x) != '#'){
             switch(visualMap.get(y).get(x)){
                 case 'S':
-
-                        System.out.println("Selling fish!");
-
+                        objectOn = 'S';
                         break;
                     case 'F':
-                        System.out.println("Fishing...");
-                    break;
+                        objectOn = 'F';
+                        break;
                     case 'B':
-                        System.out.println("Buy some beer!");
-                    break;
+                        objectOn = 'B';
+                        break;
             }
             movementMap.get(this.oldY).set(this.oldX, ' ');
             movementMap.get(y).set(x, 'P');
@@ -101,6 +92,10 @@ public class MapLoader {
 
     public List<List<Character>> getVisualMap() {
         return visualMap;
+    }
+
+    public char getObjectOn() {
+        return objectOn;
     }
 }
 /*

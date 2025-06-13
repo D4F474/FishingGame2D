@@ -2,16 +2,18 @@ package org.example.GameEngine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import org.example.entity.FishManager;
 import org.example.entity.Player;
 
 public class InputFromUser {
     private MapLoader mapLoader;
     private Player player;
-
+    private FishManager fishManager;
 
     public InputFromUser(MapLoader mapLoader, Player player) {
         this.mapLoader = mapLoader;
         this.player = player;
+        this.fishManager = new FishManager();
     }
 
     public void movementPlayer(){
@@ -46,13 +48,11 @@ public class InputFromUser {
                 player.moveLeft(speed, deltaTime);
             }
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.F)){
-
+        if(Gdx.input.isKeyJustPressed(Input.Keys.F)){
+            if(this.mapLoader.getObjectOn() == 'F'){
+                player.addItemToInventory(fishManager.getFish());
+            }
         }
     }
-
-    public void catchFish(){
-
-        }
 
 }

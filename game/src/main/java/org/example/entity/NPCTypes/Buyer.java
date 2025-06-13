@@ -9,4 +9,5 @@ public class Buyer extends NPCManager{
     public void interact() {
 
     }
+
 }

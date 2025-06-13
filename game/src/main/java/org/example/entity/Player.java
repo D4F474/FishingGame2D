@@ -1,5 +1,6 @@
 package org.example.entity;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.example.entity.Items.Item;
 
 import java.util.HashMap;
@@ -12,6 +13,7 @@ public class Player {
     private int thirsty;
     private float x;
     private float y;
+    private boolean isInteraction = false;
 
     private Map<Item, Integer> inventory;
 
@@ -49,6 +51,10 @@ public class Player {
         this.y = y;
     }
 
+    public boolean isInteraction() {
+        return isInteraction;
+    }
+
     public void moveUp(float speed, float deltaTime){
         y = y - speed * deltaTime;
     }
@@ -63,19 +69,24 @@ public class Player {
         x = x + speed * deltaTime;
     }
 
-    public void openInventory(){
+    public void openInventory(SpriteBatch batch, float x, float y){
         for(Item item : this.inventory.keySet()){
+            System.out.println("Predi towa");
             System.out.println(item.getName());
+            batch.draw(item.getTexture(),x,y,32,32);
+            System.out.println("Sled tova");
         }
     }
 
     public void addItemToInventory(Item item){
         if(!this.inventory.containsKey(item)){
-            this.inventory.put(item, 0);
+            this.inventory.put(item, 1);
         }else{
             this.inventory.compute(item, (i, v)-> v + 1);
         }
     }
 
-
+    public void interaction(){
+        this.isInteraction = !this.isInteraction;
+    }
 }

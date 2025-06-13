@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.example.entity.Items.Bread;
 import org.example.entity.Items.Item;
+import org.example.entity.NPCTypes.Buyer;
+import org.example.entity.NPCTypes.Fisher;
+import org.example.entity.NPCTypes.Seller;
 import org.example.entity.Player;
 import org.example.entity.Visual.Textures;
 
@@ -31,8 +34,8 @@ public class Game implements ApplicationListener {
     private SpriteBatch batch;
     private Sprite sprite;
     boolean isInventoryVisible;
-    public Game() {
 
+    public Game() {
     }
 
     public Player getPlayer() {
@@ -51,8 +54,6 @@ public class Game implements ApplicationListener {
         List<List<Character>> movementMap = fl.readMapData(MOVEMENT_MAP);
         this.player = new Player("NPC", fl.getX(), fl.getY());
         this.mapLoader = new MapLoader(visualMap, movementMap);
-        Item bread = new Bread("Hlqb", 5, 1);
-        player.addItemToInventory(bread);
         inputFromUser = new InputFromUser(mapLoader, player);
         batch = new SpriteBatch();
     }
@@ -69,9 +70,9 @@ public class Game implements ApplicationListener {
                 float y = (15 - 1 - i ) * 32;
                 batch.draw(textures.getInventory(), x, y, 32, 32);
 
+                player.openInventory(batch,x,y);
             }
         }
-        player.openInventory();
     }
 
     @Override

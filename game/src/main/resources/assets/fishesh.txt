@@ -1,0 +1,6 @@
+salmon/10
+tuna/20
+cod/15
+trout/5
+bass/12
+mackerel/32
